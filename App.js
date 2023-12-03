@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from "react";
+import "react-native-gesture-handler";
+import HomePage from "./src/pages/HomePage";
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+const Drawer = createDrawerNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="HomePage">
+        <Drawer.Screen name="HomePage" component={HomePage} />
+      </Drawer.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
