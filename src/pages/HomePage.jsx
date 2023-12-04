@@ -1,16 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 export default function Home() {
-  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
         <Image style={styles.image} source={require("../../assets/logo.jpg")} />
       </View>
       <Text style={styles.text}>DigeAgent</Text>
-      <Button title="Tools" onPress={() => navigation.openDrawer()} />
+      {/* <Button title="Tools" onPress={() => navigation.openDrawer()} /> */}
       <StatusBar style="auto" />
     </View>
   );
