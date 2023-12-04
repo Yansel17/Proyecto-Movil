@@ -1,7 +1,7 @@
 import { Drawer } from "expo-router/drawer";
 export default function Layout() {
   return (
-    <Drawer screenOptions={{ headerShown: true }}>
+    <Drawer initialRouteName="login">
       <Drawer.Screen
         name="home"
         options={{
@@ -14,6 +14,14 @@ export default function Layout() {
         options={{
           drawerLabel: "Map",
           title: "Map",
+        }}
+      />
+      <Drawer.Screen
+        name="login"
+        options={{
+          drawerLabel: "Log In",
+          title: "log in",
+          headerShown: false,
         }}
       />
     </Drawer>
