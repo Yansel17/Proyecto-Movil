@@ -1,8 +1,9 @@
 //import liraries
 import React, { Component } from "react";
 import { Formik, useField } from "formik";
-import { View, Text, StyleSheet, ToastAndroid } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { logInValidationSchena } from "../../../src/components/ValidationSchemas/LogIn";
 
 //Components
 
@@ -16,12 +17,11 @@ const FormikInputValue = ({ name, ...props }) => {
   return (
     <>
       <TextInput
-      style={styles.input}
-      error={meta.error}
+        style={styles.input}
+        error={meta.error}
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
         mode="outlined"
-        label={name}
         {...props}
       />
       {meta.error && <Text style={styles.error}>{meta.error}</Text>}
@@ -29,39 +29,39 @@ const FormikInputValue = ({ name, ...props }) => {
   );
 };
 
-const validate = (values) => {
-  const errors = {};
+ const [hideText, setHideText] = React.useState(false);
 
-  if (!values.Email) {
-    errors.Email = "El correo es requerido";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)) {
-    errors.Email = "Correo invalido";
-  }
-
-  console.log(errors);
-  return errors;
-};
+ const handleHideText = () => {
+  setHideText(!hideText);
+ }
 
 // create a component
 const LogInPage = () => {
   return (
     <Formik
-      validate={validate}
+      validationSchema={logInValidationSchena}
       initialValues={initialValues}
       onSubmit={(value) => console.log(value)}
     >
       {({ handleSubmit }) => {
         return (
           <View style={styles.container}>
-            <Text>LogInPage</Text>
+            <Image
+              style={styles.logo}
+              source={require("../../../assets/logo.png")}
+            />
+            <Text style={styles.title}>Inicio de sección</Text>
             <View style={styles.inputContainer}>
-              <FormikInputValue name={"Email"} />
+              <FormikInputValue name={"Email"} label="Correo" />
               <FormikInputValue
                 name={"Password"}
-                secureTextEntry
-                right={<TextInput.Icon icon="eye" />}
+                secureTextEntry={hideText}
+                label="Contraseña"
+                right={<TextInput.Icon icon="eye"/>}
               />
-              <Button onPress={handleSubmit}>Ingresar</Button>
+              <Button style={styles.button} onPress={handleSubmit}>
+                Ingresar
+              </Button>
             </View>
           </View>
         );
@@ -73,7 +73,7 @@ const LogInPage = () => {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -88,6 +88,20 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     fontVariant: ["small-caps"],
+  },
+  logo: {
+    width: 200,
+    height: 200,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  button: {
+    marginTop: 10,
+    fontSize: 30,
   },
 });
 
