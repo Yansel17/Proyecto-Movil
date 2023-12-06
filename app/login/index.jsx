@@ -58,7 +58,7 @@ const LogInPage = () => {
                 right={
                   <TextInput.Icon
                     icon={hideText ? "eye" : "eye-off"}
-                    onPress={handleSubmit(handleHideText)}
+                    onPress={handleHideText}
                   />
                 }
               />
