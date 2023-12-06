@@ -1,7 +1,9 @@
 import { Drawer } from "expo-router/drawer";
+import { Stack } from "expo-router/stack";
+
 export default function Layout() {
   return (
-    <Drawer initialRouteName="login">
+    <Drawer >
       <Drawer.Screen
         name="home"
         options={{
@@ -16,14 +18,7 @@ export default function Layout() {
           title: "Map",
         }}
       />
-      <Drawer.Screen
-        name="login"
-        options={{
-          drawerLabel: "Log In",
-          title: "log in",
-          headerShown: false,
-        }}
-      />
+   
     </Drawer>
   );
 }

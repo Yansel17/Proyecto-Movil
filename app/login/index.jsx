@@ -1,9 +1,9 @@
 //import liraries
 import React, { Component } from "react";
 import { Formik, useField } from "formik";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Button, TextInput } from "react-native-paper";
-import { logInValidationSchena } from "../../../src/components/ValidationSchemas/LogIn";
+import { View, StyleSheet, Image } from "react-native";
+import { Text, TextInput, Button } from "react-native-paper";
+import { logInValidationSchena } from "../../src/components/ValidationSchemas/LogIn";
 
 //Components
 
@@ -29,14 +29,13 @@ const FormikInputValue = ({ name, ...props }) => {
   );
 };
 
- const [hideText, setHideText] = React.useState(false);
-
- const handleHideText = () => {
-  setHideText(!hideText);
- }
-
 // create a component
 const LogInPage = () => {
+  const [hideText, setHideText] = React.useState(true);
+  const handleHideText = () => {
+    setHideText(!hideText);
+  };
+
   return (
     <Formik
       validationSchema={logInValidationSchena}
@@ -48,7 +47,7 @@ const LogInPage = () => {
           <View style={styles.container}>
             <Image
               style={styles.logo}
-              source={require("../../../assets/logo.png")}
+              source={require("../../assets/logo.png")}
             />
             <Text style={styles.title}>Inicio de sección</Text>
             <View style={styles.inputContainer}>
@@ -57,12 +56,21 @@ const LogInPage = () => {
                 name={"Password"}
                 secureTextEntry={hideText}
                 label="Contraseña"
-                right={<TextInput.Icon icon="eye"/>}
+                right={
+                  <TextInput.Icon
+                    icon={hideText ? "eye" : "eye-off"}
+                    onPress={handleHideText}
+                  />
+                }
               />
-              <Button style={styles.button} onPress={handleSubmit}>
-                Ingresar
-              </Button>
             </View>
+            <Button
+              style={[styles.boton, { backgroundColor: "green" }]}
+              labelStyle={{ fontSize: 20, color: "white" }}
+              onPress={handleSubmit}
+            >
+              Ingresar
+            </Button>
           </View>
         );
       }}
@@ -94,14 +102,18 @@ const styles = StyleSheet.create({
     height: 200,
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     marginBottom: 10,
-    marginTop: 10,
+    opacity: 0.8,
+    margin: 10,
+    fontFamily: "sans-serif-condensed",
+    textDecorationLine: "underline",
   },
-  button: {
-    marginTop: 10,
-    fontSize: 30,
+  boton: {
+    marginTop: 20,
+    textDecorationColor: "red",
+    width: "80%",
   },
 });
 
