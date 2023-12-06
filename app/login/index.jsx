@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import { Formik, useField } from "formik";
 import { View, StyleSheet, Image } from "react-native";
 import { Text, TextInput, Button } from "react-native-paper";
-import { logInValidationSchena } from "../../src/components/ValidationSchemas/LogIn";
 
-//Components
+//api
+import { handleLogin } from "../../src/api/LogIn"
 
 const initialValues = {
-  Email: "",
-  Password: "",
+  User: "agente1",
+  Password: "agente123",
 };
 
 const FormikInputValue = ({ name, ...props }) => {
@@ -38,7 +38,6 @@ const LogInPage = () => {
 
   return (
     <Formik
-      validationSchema={logInValidationSchena}
       initialValues={initialValues}
       onSubmit={(value) => console.log(value)}
     >
@@ -51,7 +50,7 @@ const LogInPage = () => {
             />
             <Text style={styles.title}>Inicio de sección</Text>
             <View style={styles.inputContainer}>
-              <FormikInputValue name={"Email"} label="Correo" />
+              <FormikInputValue name={"User"} label="Usuario" />
               <FormikInputValue
                 name={"Password"}
                 secureTextEntry={hideText}
@@ -59,7 +58,7 @@ const LogInPage = () => {
                 right={
                   <TextInput.Icon
                     icon={hideText ? "eye" : "eye-off"}
-                    onPress={handleHideText}
+                    onPress={handleSubmit(handleHideText)}
                   />
                 }
               />
