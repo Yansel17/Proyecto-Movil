@@ -16,6 +16,13 @@ export default function Layout() {
           title: "Map",
         }}
       />
+      <Drawer.Screen
+        name="plaques"
+        options={{
+          drawerLabel: "Plaques",
+          title: "Plaques",
+        }}
+      />
     </Drawer>
   );
 }
