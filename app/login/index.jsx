@@ -1,13 +1,15 @@
 //import liraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, useField } from "formik";
 import { View, StyleSheet, Image } from "react-native";
-import { Text, TextInput, Button } from "react-native-paper";
+import { Text, TextInput, Button, ActivityIndicator } from "react-native-paper";
 import { Redirect } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //api
 import { login } from "../../src/api/LogIn";
 
+//Valores iniciales para los inputs
 const initialValues = {
   username: "",
   password: "",
@@ -35,30 +37,58 @@ const FormikInputValue = ({ name, ...props }) => {
 
 // create a component
 const LogInPage = () => {
+  //Estados
   const [hideText, setHideText] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [redirectToHome, setRedirectToHome] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
+  //Ocultar la contraseña
   const handleHideText = () => {
     setHideText(!hideText);
   };
 
+  //Validar el login
   const handleLogin = async (value) => {
     try {
+      setIsLoading(true);
       const result = await login(value);
       if (result.status === 200) {
         console.log(result.data, "OK");
+        setError(null);
+        //Guardamos la informacion en el local storage
+        await AsyncStorage.setItem("userData", JSON.stringify(result.data));
+        console.log("Guardado");
+
         //Nos lleva a la pagina de home
         setRedirectToHome(true);
-        setError(null);
       } else if (result.status === 401) {
-        console.log(result.error,);
+        console.log(result.error);
         setError(result.error);
       }
     } catch (error) {
       console.log(error, "Algo salio mal");
+      setError("Algo salió mal. Inténtalo de nuevo más tarde.");
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  //Efecto para comprobar si hay informacion del usuario en el local storage
+  // useEffect(() => {
+  //   // Comprobar si hay información del usuario en AsyncStorage
+  //   const checkUserData = async () => {
+  //     const userDataString = await AsyncStorage.getItem("userData");
+  //     const userData = JSON.parse(userDataString);
+
+  //     // Redirigir a la página de inicio si hay información del usuario
+  //     if (userData) {
+  //       setRedirectToHome(true);
+  //     }
+  //   };
+
+  //   checkUserData();
+  // }, []);
 
   return (
     <Formik
@@ -71,7 +101,7 @@ const LogInPage = () => {
     >
       {({ handleSubmit }) => {
         if (redirectToHome) {
-          <Redirect to="(drawer)/home" />;
+          return <Redirect href={"../(drawer)/home"} />;
         }
 
         return (
@@ -95,14 +125,22 @@ const LogInPage = () => {
                 }
               />
             </View>
-            {error && <Text style={styles.error}> {error} </Text>}
-            <Button
-              style={[styles.boton, { backgroundColor: "green" }]}
-              labelStyle={{ fontSize: 20, color: "white" }}
-              onPress={handleSubmit}
-            >
-              Ingresar
-            </Button>
+            {error ? (<Text style={styles.error}> {error} </Text>) : null}
+            {isLoading ? (
+              <ActivityIndicator
+                style={styles.activity}
+                size="large"
+                color="green"
+              />
+            ) : (
+              <Button
+                style={[styles.boton, { backgroundColor: "green" }]}
+                labelStyle={{ fontSize: 20, color: "white" }}
+                onPress={handleSubmit}
+              >
+                Ingresar
+              </Button>
+            )}
           </View>
         );
       }}
@@ -144,8 +182,10 @@ const styles = StyleSheet.create({
   },
   boton: {
     marginTop: 20,
-    textDecorationColor: "red",
     width: "80%",
+  },
+  activity: {
+    marginTop: 20,
   },
 });
 
