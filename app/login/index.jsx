@@ -1,30 +1,34 @@
 //import liraries
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Formik, useField } from "formik";
 import { View, StyleSheet, Image } from "react-native";
 import { Text, TextInput, Button } from "react-native-paper";
+import { Redirect } from "expo-router";
 
 //api
-import { handleLogin } from "../../src/api/LogIn"
+import { login } from "../../src/api/LogIn";
 
 const initialValues = {
-  User: "agente1",
-  Password: "agente123",
+  username: "",
+  password: "",
 };
 
 const FormikInputValue = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name);
+
   return (
     <>
       <TextInput
         style={styles.input}
-        error={meta.error}
+        error={meta.error && meta.touched}
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
         mode="outlined"
         {...props}
       />
-      {meta.error && <Text style={styles.error}>{meta.error}</Text>}
+      {meta.error && meta.touched && (
+        <Text style={styles.error}>{meta.error}</Text>
+      )}
     </>
   );
 };
@@ -32,16 +36,44 @@ const FormikInputValue = ({ name, ...props }) => {
 // create a component
 const LogInPage = () => {
   const [hideText, setHideText] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  const [redirectToHome, setRedirectToHome] = React.useState(false);
+
   const handleHideText = () => {
     setHideText(!hideText);
+  };
+
+  const handleLogin = async (value) => {
+    try {
+      const result = await login(value);
+      if (result.status === 200) {
+        console.log(result.data, "OK");
+        //Nos lleva a la pagina de home
+        setRedirectToHome(true);
+        setError(null);
+      } else if (result.status === 401) {
+        console.log(result.error,);
+        setError(result.error);
+      }
+    } catch (error) {
+      console.log(error, "Algo salio mal");
+    }
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(value) => console.log(value)}
+      onSubmit={async (value) => {
+        const result = await login(value);
+        console.log("summit");
+        handleLogin(value);
+      }}
     >
       {({ handleSubmit }) => {
+        if (redirectToHome) {
+          <Redirect to="(drawer)/home" />;
+        }
+
         return (
           <View style={styles.container}>
             <Image
@@ -50,9 +82,9 @@ const LogInPage = () => {
             />
             <Text style={styles.title}>Inicio de sección</Text>
             <View style={styles.inputContainer}>
-              <FormikInputValue name={"User"} label="Usuario" />
+              <FormikInputValue name={"username"} label="Usuario" />
               <FormikInputValue
-                name={"Password"}
+                name={"password"}
                 secureTextEntry={hideText}
                 label="Contraseña"
                 right={
@@ -63,6 +95,7 @@ const LogInPage = () => {
                 }
               />
             </View>
+            {error && <Text style={styles.error}> {error} </Text>}
             <Button
               style={[styles.boton, { backgroundColor: "green" }]}
               labelStyle={{ fontSize: 20, color: "white" }}
