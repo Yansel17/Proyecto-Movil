@@ -1,5 +1,5 @@
 //import liraries
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Formik, useField } from "formik";
 import { View, StyleSheet, Image } from "react-native";
 import { Text, TextInput, Button, ActivityIndicator } from "react-native-paper";
@@ -26,6 +26,8 @@ const FormikInputValue = ({ name, ...props }) => {
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
         mode="outlined"
+        contentStyle={{ color: "black" }}
+        theme={{ colors: { primary: "green" } }}
         {...props}
       />
       {meta.error && meta.touched && (
@@ -51,7 +53,6 @@ const LogInPage = () => {
   //Validar el login
   const handleLogin = async (value) => {
     try {
-      setIsLoading(true);
       const result = await login(value);
       if (result.status === 200) {
         console.log(result.data, "OK");
@@ -94,6 +95,7 @@ const LogInPage = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={async (value) => {
+        setIsLoading(true);
         const result = await login(value);
         console.log("summit");
         handleLogin(value);
@@ -110,13 +112,19 @@ const LogInPage = () => {
               style={styles.logo}
               source={require("../../assets/logo.png")}
             />
-            <Text style={styles.title}>Inicio de sección</Text>
+            <Text style={styles.title}>Iniciar de sesión</Text>
             <View style={styles.inputContainer}>
-              <FormikInputValue name={"username"} label="Usuario" />
+              <FormikInputValue
+                name={"username"}
+                label="Usuario"
+                // poner el label mas grande
+                left={<TextInput.Icon icon="account" />}
+              />
               <FormikInputValue
                 name={"password"}
                 secureTextEntry={hideText}
                 label="Contraseña"
+                left={<TextInput.Icon icon="lock" />}
                 right={
                   <TextInput.Icon
                     icon={hideText ? "eye" : "eye-off"}
@@ -125,7 +133,7 @@ const LogInPage = () => {
                 }
               />
             </View>
-            {error ? (<Text style={styles.error}> {error} </Text>) : null}
+            {error ? <Text style={styles.error}> {error} </Text> : null}
             {isLoading ? (
               <ActivityIndicator
                 style={styles.activity}
@@ -137,6 +145,7 @@ const LogInPage = () => {
                 style={[styles.boton, { backgroundColor: "green" }]}
                 labelStyle={{ fontSize: 20, color: "white" }}
                 onPress={handleSubmit}
+                disabled={isLoading}
               >
                 Ingresar
               </Button>
