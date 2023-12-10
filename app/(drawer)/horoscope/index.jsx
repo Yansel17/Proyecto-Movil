@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 import horoscopeAPI from "../../../api/horoscopeAPI";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function App() {
   const [horoscope, setHoroscope] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ signo: "", fecha: "" });
 
   async function getUserData() {
     try {
-      const value = await JSON.parse(AsyncStorage.getItem("userData"));
+      const value = await AsyncStorage.getItem("userData");
       if (value !== null) {
-        setUser(value);
+        setUser(JSON.parse(value));
       }
     } catch (error) {
       console.log(error);
     }
   }
   async function getData() {
-    const data = await horoscopeAPI.getHoros({
+    const { data } = await horoscopeAPI.getHoros({
       sign: user.signo,
       day: user.fecha,
     });
