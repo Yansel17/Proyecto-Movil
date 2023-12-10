@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export default {
-  getMultas() {
+  getMultas(id) {
     return axios
-      .get(
-        "https://multas-api.onrender.com/api/multas/656d1f27d85a8028342ae4ce"
-      )
-      .then(({ data }) => data);
+      .get(`https://multas-api.onrender.com/api/multas/${id}`)
+      .then(({ data }) => {
+        return data;
+      });
   },
 };
