@@ -63,6 +63,8 @@ export default function App() {
         pitchEnabled={true}
         rotateEnabled={true}
         showsUserLocation={true}
+        showsPointsOfInterest={false}
+        showsBuildings={false}
         followsUserLocation={true}
         userInterfaceStyle="dark"
         style={styles.map}
