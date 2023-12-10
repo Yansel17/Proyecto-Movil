@@ -7,7 +7,7 @@ import { Redirect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //api
-import { login } from "../../src/api/LogIn";
+import { login } from "../../src/api/LogInApi";
 
 //Valores iniciales para los inputs
 const initialValues = {
