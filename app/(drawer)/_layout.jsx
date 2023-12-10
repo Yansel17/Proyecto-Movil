@@ -3,22 +3,28 @@ import { Stack } from "expo-router/stack";
 
 export default function Layout() {
   return (
-    <Drawer >
+    <Drawer>
       <Drawer.Screen
         name="home"
         options={{
-          drawerLabel: "Home",
-          title: "Home",
+          drawerLabel: "Inicio",
+          title: "Inicio",
         }}
       />
       <Drawer.Screen
         name="map"
         options={{
-          drawerLabel: "Map",
-          title: "Map",
+          drawerLabel: "Mapa",
+          title: "Mapa",
         }}
       />
-   
+      <Drawer.Screen
+        name="horoscope"
+        options={{
+          drawerLabel: "Horoscopo",
+          title: "Horoscopo",
+        }}
+      />
     </Drawer>
   );
 }
