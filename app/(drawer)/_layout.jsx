@@ -25,6 +25,13 @@ export default function Layout() {
           title: "Horoscopo",
         }}
       />
+      <Drawer.Screen
+        name="multas"
+        options={{
+          drawerLabel: "Ver Multas",
+          title: "Ver Multas",
+        }}
+      />
     </Drawer>
   );
 }

@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
 import multasAPI from "../../../api/multasAPI";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [multas, setMultas] = useState([]);
   const [detail, setDetail] = useState({});
-  async function getData() {
-    const data = await multasAPI.getMultas();
-    setMultas(data);
-  }
+
   const { width, height } = Dimensions.get("window");
   const ASPECT_RATIO = width / height;
   const LATITUDE = 18.545484;
@@ -24,15 +22,17 @@ export default function App() {
       longitudeDelta: LONGITUDE_DELTA,
     },
   };
-  const marker = {
-    title: "prueba",
-    description: "prueba",
-    cordinates: {
-      latitude: 18.545484,
-      longitude: -69.900491,
-    },
-  };
-  getData();
+  useEffect(() => {
+    async function fetchData() {
+      const value = await AsyncStorage.getItem("userData");
+      if (value) {
+        const parsedUser = JSON.parse(value);
+        const data = await multasAPI.getMultas(parsedUser._id);
+        setMultas(data);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.date}>
