@@ -47,7 +47,13 @@ export default function Layout() {
           headerShown: false,
         }}
       />
+      <Drawer.Screen
+        name="clima"
+        options={{
+          drawerLabel: "Clima",
+          title: "Clima",
+        }}
+      />
     </Drawer>
   );
 }
-
