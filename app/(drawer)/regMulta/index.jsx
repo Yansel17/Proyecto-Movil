@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   scroll: {
 
     backgroundColor: "#f9ffff",
-    borderRadius: 10,
+    borderRadius: 11,
   },
   container: {
     paddingHorizontal: 10,
