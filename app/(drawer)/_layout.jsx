@@ -35,8 +35,8 @@ export default function Layout() {
       <Drawer.Screen
         name="plaques"
         options={{
-          drawerLabel: "Plaques",
-          title: "Plaques",
+          drawerLabel: "Placa",
+          title: "Placa",
         }}
       />
       <Drawer.Screen
@@ -44,6 +44,14 @@ export default function Layout() {
         options={{
           drawerLabel: "Tarifario",
           title: "Tarifario",
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="news"
+        options={{
+          drawerLabel: "Noticias",
+          title: "Noticias",
           headerShown: false,
         }}
       />
