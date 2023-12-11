@@ -57,12 +57,25 @@ export default function Layout() {
           },
         }}
       />
+
+      {/* //Screen que crea la multa */}
       <Drawer.Screen
         name="regMulta"
         options={{
-          drawerLabel: "Crear Multas",
-          title: "Crear Multas",
-          headerShown: false,
+          drawerLabel: "Crear multa",
+          title: "CREAR MULTA",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+            marginLeft: 50,
+          },
         }}
       />
       <Drawer.Screen
