@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { DataTable } from "react-native-paper";
 import multasAPI from "../../../api/multasAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,8 +23,8 @@ export default function App() {
     fetchData();
   }, []);
   return (
-    <View>
-      {
+    <View style={{ flex: 1 }}>
+      <View style={styles.textContainer}>
         <View style={{ margin: 20 }}>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             Detalles de la Multa
@@ -40,8 +40,10 @@ export default function App() {
           <Text>
             Teléfono: {selectedMulta.telefono ? selectedMulta.telefono : ""}
           </Text>
-          <Text>Fecha: {selectedMulta.fecha ? selectedMulta.fecha : ""}</Text>
-          <Text>Hora: {selectedMulta.hora ? selectedMulta.hora : ""}</Text>
+          <Text>
+            Fecha: {selectedMulta.fecha ? selectedMulta.fecha : ""} :{" "}
+            {selectedMulta.hora ? selectedMulta.hora : ""}
+          </Text>
           <Text>
             Motivo: {selectedMulta.motivo ? selectedMulta.motivo : ""}
           </Text>
@@ -52,12 +54,15 @@ export default function App() {
           <Text>
             Dirección: {selectedMulta.direccion ? selectedMulta.direccion : ""}
           </Text>
-          <Text>
-            Motivo: {selectedMulta.motivo ? selectedMulta.motivo : ""}
-          </Text>
         </View>
-      }
-      <DataTable>
+        <View style={styles.imageContainer}>
+          {selectedMulta.foto && (
+            <Image style={styles.image} source={{ uri: selectedMulta.foto }} />
+          )}
+        </View>
+      </View>
+
+      <DataTable style={{ flex: 1 }}>
         <DataTable.Header
           style={{ backgroundColor: "#146698", marginHorizontal: 5 }}
         >
@@ -93,3 +98,25 @@ export default function App() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  textContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  imageContainer: {
+    marginTop: 20,
+    height: 130,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "black",
+    borderStyle: "dashed",
+  },
+  image: {
+    width: "80%",
+    height: "80%",
+    resizeMode: "contain",
+  },
+});

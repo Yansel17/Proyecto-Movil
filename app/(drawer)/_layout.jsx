@@ -47,6 +47,13 @@ export default function Layout() {
           headerShown: false,
         }}
       />
+      <Drawer.Screen
+        name="regMulta"
+        options={{
+          drawerLabel: "Crear Multas",
+          title: "Crear Multas",
+        }}
+      />
     </Drawer>
   );
 }
