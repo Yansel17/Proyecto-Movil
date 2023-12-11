@@ -35,8 +35,8 @@ export default function Layout() {
       <Drawer.Screen
         name="plaques"
         options={{
-          drawerLabel: "Plaques",
-          title: "Plaques",
+          drawerLabel: "Placa",
+          title: "Placa",
         }}
       />
       <Drawer.Screen
@@ -47,14 +47,30 @@ export default function Layout() {
           headerShown: false,
         }}
       />
-      <Drawer.Screen
+      <Drawer.Screen 
         name="regMulta"
         options={{
           drawerLabel: "Crear Multas",
-          title: "Crear Multas",
+          title: "Crear Multas", 
+          headerShown: false,
+        }}
+        />
+      <Drawer.Screen  
+        name="clima"
+        options={{
+          drawerLabel: "Clima",
+          title: "Clima", 
+          headerShown: false,
+        }}
+        />
+         <Drawer.Screen
+        name="news"
+        options={{
+          drawerLabel: "Noticias",
+          title: "Noticias",
+          headerShown: false, 
         }}
       />
     </Drawer>
   );
 }
-
