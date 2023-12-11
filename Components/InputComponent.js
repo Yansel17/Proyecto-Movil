@@ -1,7 +1,7 @@
 // InputComponent.js
 import React, { useState } from "react";
 import { View } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 
 const InputComponent = ({ onSearch }) => {
   const [latitude, setLatitude] = useState(18.50012);

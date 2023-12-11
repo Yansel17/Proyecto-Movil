@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   descrip: {
     fontSize: 15,
     lineHeight: 20,
-    wordWrap: "break-word",
     paddingTop: 10,
   },
   activity: {

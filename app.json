@@ -5,26 +5,31 @@
     "scheme": "proyecto-movil",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/splash.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#f0f0f0"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
+        "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.RECORD_AUDIO"]
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.yanse17.ProyectoMovil"
     },
     "web": {
-      "favicon": "./assets/logo.png",
+      "favicon": "./assets/splash.png",
       "bundler": "metro"
     },
     "plugins": [
@@ -35,6 +40,14 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f0e77d2e-12e2-4f54-ac73-288a4ba8f660"
+      }
+    }
   }
 }
