@@ -1,37 +1,64 @@
-import React, {useState, useEffect} from "react";
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import { Button, TextInput } from "react-native-paper";
 import placasAPI from "../../../api/placasAPI";
 
 export default function Plaques() {
-  
-  const [plate, setPlate] = useState("");
+  const [plate, setPlate] = useState("BXB386");
   const [plateData, setPlateData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  
-    async function fetchPlateData() {
-        const data = await placasAPI.getPlacas(plate);
-        setPlateData(data);
+  const fetchPlateData = async () => {
+    try {
+      setLoading(true);
+      const data = await placasAPI.getPlacas(plate);
+      setPlateData(data);
+    } catch (error) {
+      console.error("Error fetching plate data:", error);
+    } finally {
+      setLoading(false);
     }
+  };
 
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>Placas</Text>
       <TextInput
-      style={styles.input}
-      value={plate}
-      onChangeText={(Text) => setPlate(Text)}
-      placeholder="Introducir la placa"
-      maxLength={6}
+        style={styles.input}
+        value={plate}
+        onChangeText={(text) => setPlate(text)}
+        mode="flat"
+        backgroundColor="#e9ffe1"
+        placeholder="Introducir la placa"
+        maxLength={6}
+        theme={{ colors: { primary: "green" } }}
       />
-      <Button title="Buscar" onPress={fetchPlateData} />
+      {loading && (
+        <ActivityIndicator style={styles.activity} size="large" color="green" />
+      )}
+      <Button
+        style={styles.button}
+        icon="magnify"
+        mode="contained"
+        onPress={fetchPlateData}
+        theme={{ colors: { primary: "green" } }}
+        disabled={loading}
+      >
+        Buscar
+      </Button>
       {plateData && (
         <View style={styles.textContainer}>
-          <Text>Placa: {plateData.placa}</Text>
-          <Text>Marca: {plateData.marca}</Text>
-          <Text>Modelo: {plateData.modelo}</Text>
-          <Text>Color: {plateData.color}</Text>
-          <Text>Año: {plateData.anio}</Text>
-          <Text>Estado: {plateData.estado}</Text>
+          <Text style={styles.titleText}>Placa: </Text>
+          <Text style={styles.text}>{plateData.placa}</Text>
+          <Text style={styles.titleText}>Marca: </Text>
+          <Text style={styles.text}>{plateData.marca}</Text>
+          <Text style={styles.titleText}>Modelo: </Text>
+          <Text style={styles.text}>{plateData.modelo}</Text>
+          <Text style={styles.titleText}>Color: </Text>
+          <Text style={styles.text}>{plateData.color}</Text>
+          <Text style={styles.titleText}>Año: </Text>
+          <Text style={styles.text}>{plateData.anio}</Text>
+          <Text style={styles.titleText}>Estado: </Text>
+          <Text style={styles.text}>{plateData.estado}</Text>
         </View>
       )}
     </View>
@@ -39,33 +66,37 @@ export default function Plaques() {
 }
 
 const styles = StyleSheet.create({
-view: {
-  flex: 1,
-  alignItems: "center",
-  justifyContent: "flex-start",
-},
-
-textContainer: {
-  flex: 1,
-  alignItems: "center",
-  justifyContent: "flex-start",
-  marginTop: 20,
-},
-text: {
-  fontSize: 20,
-  margin: 0,
-  marginBottom: 20,
-  marginTop: 70
-},
-input: {
-  height: 40,
-  borderColor: "gray",
-  borderWidth: 1,
-  width: "80%",
-  marginBottom: 20,
-  paddingHorizontal: 10,
-  borderRadius: 10,
-  textAlign: "center",
-},
+  view: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 20,
+  },
+  textContainer: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#e9ffe1",
+    width: "80%",
+    borderRadius: 10,
+    padding: 10,
+    height: 400,
+    marginTop: 18,
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  input: {
+    width: "80%",
+    marginBottom: 10,
+  },
+  button: {
+    marginTop: 10,
+  },
+  activity: {
+    marginTop: 10,
+  },
 });
-

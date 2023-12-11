@@ -35,17 +35,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.text}>
-        {/* <View style={{ width: 50, height: 50 }}>
-          <Button
-            onPress={() => router.replace("/login")}
-            style={styles.float}
-            title="<"
-          />
-        </View> */}
-        <Text style={styles.title}>Multas DIGESETT</Text>
-        <Text style={styles.subTitle}>Procuraduría General</Text>
-      </View>
       <ScrollView style={styles.scroll}>
         {isLoading ? (
           <ActivityIndicator
@@ -60,7 +49,7 @@ export default function App() {
             <Text style={styles.monto} key={index}>
               Monto: {multa.monto}$
             </Text>
-            <Text>{multa.descripcion}</Text>
+            <Text style={styles.descrip}>{multa.descripcion}</Text>
           </Card>
           // Asume que cada multa tiene una propiedad "descripcion"
         ))}
@@ -72,44 +61,48 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f9ffff",
+    padding: 10, // Añade un poco de espacio alrededor del contenido
   },
-  text: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#f7bc05",
-    textAlign: "center",
-  },
-  subTitle: {
-    textAlign: "center",
-  },
+
   scroll: {
-    width: "95%",
     alignSelf: "center",
     height: "auto",
-    backgroundColor: "#ffff",
+    backgroundColor: "#f9ffff",
     borderRadius: 10,
+    paddingHorizontal: 5, // Espacio horizontal adicional
+    paddingVertical: 10, // Espacio vertical adicional
+    shadowColor: "#000", // Color de la sombra
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5, // Añade sombra
   },
+
   card: {
     padding: 10,
     marginBottom: 10,
+    elevation: 3, // Añade sombra
+    borderRadius: 10,
   },
+
   titleMulta: {
     fontWeight: "bold",
   },
   monto: {
-    fontSize: 20,
+    fontSize: 18,
+    color: "red", // Color personalizado
   },
-  float: {
-    position: "absolute",
-    top: 20,
-    left: 20,
 
-    backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center",
+  descrip: {
+    fontSize: 15,
+    lineHeight: 20,
+    wordWrap: "break-word",
+    paddingTop: 10,
+  },
+  activity: {
+    marginTop: 20, // Espacio adicional sobre el indicador
   },
 });
