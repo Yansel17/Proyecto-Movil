@@ -1,13 +1,20 @@
 // MultaForm.js
 import { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { TextInput } from "react-native-paper";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+} from "react-native";
+import { TextInput, Button } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Audio } from "expo-av";
 import { Picker } from "@react-native-picker/picker";
 import multasAPI from "../../../api/multasAPI";
 import { useRouter } from "expo-router";
+
 export default function App() {
   const [tarifario, setTarifario] = useState([]);
   const [user, setUser] = useState("");
@@ -134,75 +141,85 @@ export default function App() {
     fetchData();
   }, []);
   return (
-    <View>
-      <View>
+    <ScrollView style={styles.scroll}>
+      <View style={styles.container}>
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Cédula"
+          label="Cédula"
           value={cedula}
           onChangeText={(text) => setCedula(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Placa"
+          label="Placa"
           value={placa}
           onChangeText={(text) => setPlaca(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Comentario"
+          label="Comentario"
           value={comentario}
           onChangeText={(text) => setComentario(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Latitud"
+          label="Latitud"
           value={latitud}
           onChangeText={(text) => setLatitud(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Logintud"
+          label="Logintud"
           value={longitud}
           onChangeText={(text) => setLongitud(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Fecha"
+          label="Fecha"
           value={fecha}
           onChangeText={(text) => setFecha(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Nombre"
+          label="Nombre"
           value={nombreConductor}
           onChangeText={(text) => setNombre(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Telefono"
+          label="Telefono"
           value={telefono}
           onChangeText={(text) => setTelefono(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Direccion"
+          label="Direccion"
           value={direccion}
           onChangeText={(text) => setDireccion(text)}
         />
         <TextInput
           style={styles.input}
+          theme={{ colors: { primary: "green" } }}
           mode="outlined"
-          placeholder="Hora"
+          label="Hora"
           value={hora}
           onChangeText={(text) => setHora(text)}
         />
@@ -215,39 +232,64 @@ export default function App() {
           ))}
         </Picker>
       </View>
-      <View style={styles.container}>
+      <View style={styles.container2}>
         <View style={styles.TouchableOpacityContainer}>
-          <TouchableOpacity
+          <Button
+            style={styles.buttonGrabar}
+            theme={{ colors: { primary: "white" } }}
             onPress={recording ? stopRecording : startRecording}
           >
             <Text>{recording ? "Parar" : "Grabar"} </Text>
-          </TouchableOpacity>
+          </Button>
         </View>
-        <View style={styles.TouchableOpacityContainer2}>
-          <TouchableOpacity disabled={!currentSound} onPress={playSound}>
+        <View style={styles.bottonEscuchar}>
+          <Button
+            disabled={currentSound}
+            theme={{ colors: { primary: "white" } }}
+            onPress={playSound}
+          >
             <Text>Escuchar</Text>
-          </TouchableOpacity>
+          </Button>
         </View>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity onPress={pickImage}>
+        <Button
+          style={styles.takePhoto}
+          theme={{ colors: { primary: "white" } }}
+          icon={"camera"}
+          onPress={pickImage}
+        >
           <Text>Tomar imagen</Text>
-        </TouchableOpacity>
+        </Button>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.TouchableOpacity} onPress={createMulta}>
+        <Button
+          style={styles.save}
+          theme={{ colors: { primary: "white" } }}
+          onPress={createMulta}
+        >
           <Text>Guardar</Text>
-        </TouchableOpacity>
+        </Button>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
+  scroll: {
+
+    backgroundColor: "#f9ffff",
+    borderRadius: 11,
+  },
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     marginTop: 20,
+    paddingBottom: 20,
+  },
+  container2: {
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    marginTop: 20,
+    
   },
   TouchableOpacityContainer: {
     flex: 1,
@@ -260,5 +302,28 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     fontSize: 16,
+  },
+  buttonGrabar: {
+    backgroundColor: "red",
+    borderRadius: 50,
+    width: 90,
+    height: 90,
+    justifyContent: "center",
+  },
+  bottonEscuchar: {
+    borderRadius: 50,
+    width: 90,
+    height: 90,
+    marginHorizontal: 5,
+    backgroundColor: "#f7bc05",
+    justifyContent: "center",
+  },
+  takePhoto: {
+    backgroundColor: "green",
+    justifyContent: "center",
+  },
+  save: {
+    flex: 1,
+    backgroundColor: "green",
   },
 });
