@@ -16,6 +16,12 @@ export default function Layout() {
         options={{
           drawerLabel: "Tarifario",
           title: "Multas DIGESETT",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 50,
+          },
           headerTitleStyle: {
             fontWeight: "bold",
             color: "#f7bc05",
@@ -35,8 +41,20 @@ export default function Layout() {
       <Drawer.Screen
         name="plaques"
         options={{
-          drawerLabel: "Placa",
-          title: "Placa",
+          drawerLabel: "Placas",
+          title: "CONSULTAR PLACAS",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 50,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+            marginLeft: 50,
+          },
         }}
       />
       <Drawer.Screen

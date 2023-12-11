@@ -61,15 +61,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f9ffff",
     padding: 10, // Añade un poco de espacio alrededor del contenido
   },
 
   scroll: {
-    width: "95%",
     alignSelf: "center",
     height: "auto",
-    backgroundColor: "#ffff",
+    backgroundColor: "#f9ffff",
     borderRadius: 10,
     paddingHorizontal: 5, // Espacio horizontal adicional
     paddingVertical: 10, // Espacio vertical adicional
@@ -101,7 +99,7 @@ const styles = StyleSheet.create({
   descrip: {
     fontSize: 15,
     lineHeight: 20,
-    wordWrap: 'break-word',
+    wordWrap: "break-word",
     paddingTop: 10,
   },
   activity: {
