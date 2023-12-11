@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, TextInput, Button } from "react-native";
-import axios from "axios";
+import placasAPI from "../../../api/placasAPI";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Plaques() {
   
@@ -8,22 +9,18 @@ export default function Plaques() {
   const [plateData, setPlateData] = useState(null);
 
   
-  const fetchPlateData = async () => {
-    try {
-        const data = await (await fetch(`https://multas-api.onrender.com/api/placa/${plate}`)).json()
-        setPlateData(data)
-    } catch (err) {
-        console.log(err.message)
+    async function fetchPlateData() {
+        const data = await placasAPI.getPlacas(plate);
+        setPlateData(data);
     }
-}
 
   return (
     <View style={styles.view}>
       <Text style={styles.text}>Placas</Text>
       <TextInput
       style={styles.input}
-      onChangeText={setPlate}
       value={plate}
+      onChangeText={(Text) => setPlate(Text)}
       placeholder="Introducir la placa"
       />
       <Button title="Buscar" onPress={fetchPlateData} />
