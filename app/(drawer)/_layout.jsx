@@ -26,6 +26,20 @@ export default function Layout() {
         }}
       />
       <Drawer.Screen
+        name="multas"
+        options={{
+          drawerLabel: "Ver Multas",
+          title: "Ver Multas",
+        }}
+      />
+      <Drawer.Screen
+        name="plaques"
+        options={{
+          drawerLabel: "Plaques",
+          title: "Plaques",
+        }}
+      />
+      <Drawer.Screen
         name="tarifario"
         options={{
           drawerLabel: "Tarifario",

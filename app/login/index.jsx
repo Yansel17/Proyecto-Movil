@@ -55,7 +55,6 @@ const LogInPage = () => {
     try {
       const result = await login(value);
       if (result.status === 200) {
-        console.log(result.data, "OK");
         setError(null);
         //Guardamos la informacion en el local storage
         await AsyncStorage.setItem("userData", JSON.stringify(result.data));
@@ -97,7 +96,6 @@ const LogInPage = () => {
       onSubmit={async (value) => {
         setIsLoading(true);
         const result = await login(value);
-        console.log("summit");
         handleLogin(value);
       }}
     >
