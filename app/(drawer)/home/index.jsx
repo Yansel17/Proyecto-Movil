@@ -9,7 +9,7 @@ export default function HomePage() {
           source={require("../../../assets/logo.png")}
         />
       </View>
-      <Text style={styles.text}>DigeAgent</Text>
+      <Text style={styles.text}>Bienvenido a DigeAgentApp!</Text>
       {/* <Button title="Tools" onPress={() => navigation.openDrawer()} /> */}
     </View>
   );
