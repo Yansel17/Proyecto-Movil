@@ -15,8 +15,13 @@ export default function Layout() {
         name="tarifario"
         options={{
           drawerLabel: "Tarifario",
-          title: "Tarifario",
-          headerShown: false,
+          title: "Multas DIGESETT",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+            marginLeft: 50,
+          },
         }}
       />
       <Drawer.Screen
