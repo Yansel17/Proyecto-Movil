@@ -30,6 +30,7 @@ export default function Layout() {
         options={{
           drawerLabel: "Tarifario",
           title: "Tarifario",
+          headerShown: false,
         }}
       />
     </Drawer>
