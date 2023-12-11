@@ -47,10 +47,20 @@ export default function Layout() {
           headerShown: false,
         }}
       />
-      <Drawer.Screen
+      <Drawer.Screen 
+        name="regMulta"
+        options={{
+          drawerLabel: "Crear Multas",
+          title: "Crear Multas", 
+          headerShown: false,
+        }}
+        />
+      <Drawer.Screen  
         name="clima"
         options={{
           drawerLabel: "Clima",
+          title: "Clima", 
+          headerShown: false,
         }}
         />
          <Drawer.Screen
@@ -58,7 +68,7 @@ export default function Layout() {
         options={{
           drawerLabel: "Noticias",
           title: "Noticias",
-          headerShown: false,
+          headerShown: false, 
         }}
       />
     </Drawer>

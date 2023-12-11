@@ -46,14 +46,13 @@ export default function App() {
           <Text style={styles.description}>{detail.cedula}</Text>
           <Text style={styles.titles}>Comentario:</Text>
           <Text style={styles.description}>{detail.comentario}</Text>
+          <Text style={styles.titles}>Placa:</Text>
+          <Text style={styles.description}>{detail.placa}</Text>
+          <Text style={styles.titles}>Telefono:</Text>
+          <Text style={styles.description}>{detail.telefono}</Text>
         </View>
         <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: "https://media.istockphoto.com/id/1157655660/es/foto/suv-rojo-gen%C3%A9rico-sobre-un-fondo-blanco-vista-lateral.jpg?s=2048x2048&w=is&k=20&c=kBBB4-vZxjxHDvXAWAoe5DYMT8DRxAWoD_TytzhFL5Y=",
-            }}
-          />
+          <Image style={styles.image} source={{ uri: detail.foto }} />
         </View>
       </View>
       <MapView
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
   map: {
     textAlign: "center",
     width: "100%",
-    height: "70%",
+    height: "60%",
     borderWidth: 5,
     borderColor: "red",
     borderStyle: "solid",
