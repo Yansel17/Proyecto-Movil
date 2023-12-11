@@ -100,56 +100,56 @@ const LogInPage = () => {
       }}
     >
       {({ handleSubmit }) => {
-        // if (redirectToHome) {
+        if (redirectToHome) {
           return <Redirect href={"../(drawer)/home"} />;
-        // }
+        }
 
-        // return (
-        //   <View style={styles.container}>
-        //     <Image
-        //       style={styles.logo}
-        //       source={require("../../assets/logo.png")}
-        //     />
-        //     <Text style={styles.title}>Iniciar de sesión</Text>
-        //     <View style={styles.inputContainer}>
-        //       <FormikInputValue
-        //         name={"username"}
-        //         label="Usuario"
-        //         // poner el label mas grande
-        //         left={<TextInput.Icon icon="account" />}
-        //       />
-        //       <FormikInputValue
-        //         name={"password"}
-        //         secureTextEntry={hideText}
-        //         label="Contraseña"
-        //         left={<TextInput.Icon icon="lock" />}
-        //         right={
-        //           <TextInput.Icon
-        //             icon={hideText ? "eye" : "eye-off"}
-        //             onPress={handleHideText}
-        //           />
-        //         }
-        //       />
-        //     </View>
-        //     {error ? <Text style={styles.error}> {error} </Text> : null}
-        //     {isLoading ? (
-        //       <ActivityIndicator
-        //         style={styles.activity}
-        //         size="large"
-        //         color="green"
-        //       />
-        //     ) : (
-        //       <Button
-        //         style={[styles.boton, { backgroundColor: "green" }]}
-        //         labelStyle={{ fontSize: 20, color: "white" }}
-        //         onPress={handleSubmit}
-        //         disabled={isLoading}
-        //       >
-        //         Ingresar
-        //       </Button>
-        //     )}
-        //   </View>
-        // );
+        return (
+          <View style={styles.container}>
+            <Image
+              style={styles.logo}
+              source={require("../../assets/logo.png")}
+            />
+            <Text style={styles.title}>Iniciar de sesión</Text>
+            <View style={styles.inputContainer}>
+              <FormikInputValue
+                name={"username"}
+                label="Usuario"
+                // poner el label mas grande
+                left={<TextInput.Icon icon="account" />}
+              />
+              <FormikInputValue
+                name={"password"}
+                secureTextEntry={hideText}
+                label="Contraseña"
+                left={<TextInput.Icon icon="lock" />}
+                right={
+                  <TextInput.Icon
+                    icon={hideText ? "eye" : "eye-off"}
+                    onPress={handleHideText}
+                  />
+                }
+              />
+            </View>
+            {error ? <Text style={styles.error}> {error} </Text> : null}
+            {isLoading ? (
+              <ActivityIndicator
+                style={styles.activity}
+                size="large"
+                color="green"
+              />
+            ) : (
+              <Button
+                style={[styles.boton, { backgroundColor: "green" }]}
+                labelStyle={{ fontSize: 20, color: "white" }}
+                onPress={handleSubmit}
+                disabled={isLoading}
+              >
+                Ingresar
+              </Button>
+            )}
+          </View>
+        );
       }}
     </Formik>
   );

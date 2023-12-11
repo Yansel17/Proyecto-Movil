@@ -26,20 +26,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     marginTop: 40,
-    height: 250,
-    width: 250,
   },
   image: {
     borderWidth: 2,
     borderColor: "#282828",
-    borderRadius: 100,
     resizeMode: "contain",
-    height: 200,
-    width: 200,
   },
   text: {
     fontSize: 20,
     margin: 0,
     marginBottom: 20,
+    fontWeight: "bold",
+    color: "#f7bc05",
   },
 });

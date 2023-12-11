@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000", // Color de la sombra
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 'auto',
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,

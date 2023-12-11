@@ -38,7 +38,6 @@ export default function Plaques() {
       <Button
         style={styles.button}
         icon="magnify"
-        mode="contained"
         onPress={fetchPlateData}
         theme={{ colors: { primary: "green" } }}
         disabled={loading}
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
+    width: "80%",
     marginTop: 10,
   },
   activity: {

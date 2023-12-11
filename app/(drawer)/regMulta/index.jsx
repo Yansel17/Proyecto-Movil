@@ -148,6 +148,7 @@ export default function App() {
           theme={{ colors: { primary: "green" } }}
           mode="outlined"
           label="Cédula"
+          maxLength={11}
           value={cedula}
           onChangeText={(text) => setCedula(text)}
         />
@@ -157,6 +158,7 @@ export default function App() {
           mode="outlined"
           label="Placa"
           value={placa}
+          maxLength={6}
           onChangeText={(text) => setPlaca(text)}
         />
         <TextInput
@@ -187,6 +189,7 @@ export default function App() {
           style={styles.input}
           theme={{ colors: { primary: "green" } }}
           mode="outlined"
+          placeholder="dd/mm/aaaa"
           label="Fecha"
           value={fecha}
           onChangeText={(text) => setFecha(text)}
@@ -205,6 +208,7 @@ export default function App() {
           mode="outlined"
           label="Telefono"
           value={telefono}
+          maxLength={10}
           onChangeText={(text) => setTelefono(text)}
         />
         <TextInput
@@ -244,7 +248,7 @@ export default function App() {
         </View>
         <View style={styles.bottonEscuchar}>
           <Button
-            disabled={currentSound}
+            disabled={!currentSound}
             theme={{ colors: { primary: "white" } }}
             onPress={playSound}
           >
@@ -268,7 +272,7 @@ export default function App() {
           theme={{ colors: { primary: "white" } }}
           onPress={createMulta}
         >
-          <Text>Guardar</Text>
+          Guardar
         </Button>
       </View>
     </ScrollView>
