@@ -1,5 +1,5 @@
 import { Drawer } from "expo-router/drawer";
-import { Stack } from "expo-router/stack";
+import { View } from "@bacons/react-views";
 
 export default function Layout() {
   return (
@@ -25,6 +25,14 @@ export default function Layout() {
           title: "Horoscopo",
         }}
       />
+      <Drawer.Screen
+        name="tarifario"
+        options={{
+          drawerLabel: "Tarifario",
+          title: "Tarifario",
+        }}
+      />
     </Drawer>
   );
 }
+
