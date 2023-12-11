@@ -8,4 +8,11 @@ export default {
         return data;
       });
   },
+  getLicencia(licencia) {
+    return axios
+      .get(`https://api.adamix.net/apec/cedula/${licencia}`)
+      .then(({ data }) => {
+        return data;
+      });
+  },
 };
