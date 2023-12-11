@@ -52,6 +52,7 @@ export default function Layout() {
         options={{
           drawerLabel: "Clima",
         }}
+        />
          <Drawer.Screen
         name="news"
         options={{
