@@ -1,4 +1,4 @@
 import { Redirect } from "expo-router";
-export default function Page() {
-  return <Redirect href={"./(drawer)/tarifario"} />;
+export default function Page() { 
+  return <Redirect href={"./login"} />; 
 }

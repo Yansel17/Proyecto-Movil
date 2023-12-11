@@ -12,6 +12,44 @@ export default function Layout() {
         }}
       />
       <Drawer.Screen
+        name="tarifario"
+        options={{
+          drawerLabel: "Tarifario",
+          title: "Tarifario",
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="licencia"
+        options={{
+          drawerLabel: "Licencia",
+          title: "Licencia",
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="plaques"
+        options={{
+          drawerLabel: "Placa",
+          title: "Placa",
+        }}
+      />
+      <Drawer.Screen
+        name="regMulta"
+        options={{
+          drawerLabel: "Crear Multas",
+          title: "Crear Multas",
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="multas"
+        options={{
+          drawerLabel: "Ver Multas",
+          title: "Ver Multas",
+        }}
+      />
+      <Drawer.Screen
         name="map"
         options={{
           drawerLabel: "Mapa",
@@ -26,28 +64,21 @@ export default function Layout() {
         }}
       />
       <Drawer.Screen
-        name="multas"
+        name="clima"
         options={{
-          drawerLabel: "Ver Multas",
-          title: "Ver Multas",
+          drawerLabel: "Clima",
+          title: "Clima",
+          headerShown: false,
         }}
       />
       <Drawer.Screen
-        name="plaques"
+        name="news"
         options={{
-          drawerLabel: "Plaques",
-          title: "Plaques",
-        }}
-      />
-      <Drawer.Screen
-        name="tarifario"
-        options={{
-          drawerLabel: "Tarifario",
-          title: "Tarifario",
+          drawerLabel: "Noticias",
+          title: "Noticias",
           headerShown: false,
         }}
       />
     </Drawer>
   );
 }
-
