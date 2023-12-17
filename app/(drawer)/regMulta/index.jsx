@@ -280,20 +280,17 @@ export default function App() {
 }
 const styles = StyleSheet.create({
   scroll: {
-
     backgroundColor: "#f9ffff",
     borderRadius: 11,
   },
   container: {
-    paddingHorizontal: 10,
-    marginTop: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 20,
+    marginTop: 10,
   },
   container2: {
     flexDirection: "row",
-    paddingHorizontal: 10,
-    marginTop: 20,
-    
+    paddingHorizontal: 20,
+    marginTop: 10,
   },
   TouchableOpacityContainer: {
     flex: 1,
@@ -329,5 +326,6 @@ const styles = StyleSheet.create({
   save: {
     flex: 1,
     backgroundColor: "green",
+    marginBottom: 40,
   },
 });

@@ -1,11 +1,11 @@
 // App.js
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import InputComponent from "../../../Components/InputComponent";
 import WeatherComponent from "../../../Components/WeatherComponent";
 import getWeather from "../../..//api/WeatherService";
 
-const clima = () => {
+const Clima = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [latitude, setLatitude] = useState(18.50012);
   const [longitude, setLongitude] = useState(-69.98857);
@@ -28,11 +28,17 @@ const clima = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <InputComponent onSearch={handleSearch} />
       <WeatherComponent weatherData={weatherData} />
     </View>
   );
 };
 
-export default clima;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default Clima;

@@ -34,8 +34,18 @@ export default function Layout() {
         name="licencia"
         options={{
           drawerLabel: "Licencia",
-          title: "Licencia",
-          headerShown: false,
+          title: "CONSULTAR LICENCIA",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 50,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
@@ -53,7 +63,6 @@ export default function Layout() {
             fontWeight: "bold",
             color: "#f7bc05",
             alignSelf: "center",
-            marginLeft: 50,
           },
         }}
       />
@@ -74,45 +83,98 @@ export default function Layout() {
             fontWeight: "bold",
             color: "#f7bc05",
             alignSelf: "center",
-            marginLeft: 50,
+            marginLeft: 40,
           },
         }}
       />
       <Drawer.Screen
         name="multas"
         options={{
-          drawerLabel: "Ver Multas",
-          title: "Ver Multas",
+          drawerLabel: "Ver multas",
+          title: "CONSULTAR MULTAS",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
         name="map"
         options={{
           drawerLabel: "Mapa",
-          title: "Mapa",
+          title: "MAPA DE MULTAS",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
         name="horoscope"
         options={{
-          drawerLabel: "Horoscopo",
-          title: "Horoscopo",
+          drawerLabel: "Horóscopo",
+          title: "CONSULTAR HORÓSCOPO",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
         name="clima"
         options={{
           drawerLabel: "Clima",
-          title: "Clima",
-          headerShown: false,
+          title: "CONSULTAR CLIMA",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
         name="news"
         options={{
           drawerLabel: "Noticias",
-          title: "Noticias",
-          headerShown: false,
+          title: "NOTICIAS RECIENTES",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
     </Drawer>

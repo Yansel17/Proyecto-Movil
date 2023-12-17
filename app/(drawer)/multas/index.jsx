@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { DataTable } from "react-native-paper";
 import multasAPI from "../../../api/multasAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -61,31 +68,30 @@ export default function App() {
           )}
         </View>
       </View>
-
       <DataTable style={{ flex: 1 }}>
-        <DataTable.Header
-          style={{ backgroundColor: "#146698", marginHorizontal: 5 }}
-        >
+        <DataTable.Header style={{ backgroundColor: "#146698" }}>
           <DataTable.Title>Cedula</DataTable.Title>
           <DataTable.Title>Nombre</DataTable.Title>
           <DataTable.Title>Motivo</DataTable.Title>
           <DataTable.Title>Acciones</DataTable.Title>
         </DataTable.Header>
-
-        {multas &&
-          multas.slice(from, to).map((item) => (
-            <DataTable.Row key={item._id}>
-              <DataTable.Cell>{item.cedula}</DataTable.Cell>
-              <DataTable.Cell>{item.nombreConductor}</DataTable.Cell>
-              <DataTable.Cell>{item.motivo}</DataTable.Cell>
-              <DataTable.Cell>
-                <TouchableOpacity onPress={() => setSelectedMulta(item)}>
-                  <Text>Detalles</Text>
-                </TouchableOpacity>
-              </DataTable.Cell>
-            </DataTable.Row>
-          ))}
+        <ScrollView>
+          {multas &&
+            multas.slice(from, to).map((item) => (
+              <DataTable.Row key={item._id}>
+                <DataTable.Cell>{item.cedula}</DataTable.Cell>
+                <DataTable.Cell>{item.nombreConductor}</DataTable.Cell>
+                <DataTable.Cell>{item.motivo}</DataTable.Cell>
+                <DataTable.Cell>
+                  <TouchableOpacity onPress={() => setSelectedMulta(item)}>
+                    <Text>Detalles</Text>
+                  </TouchableOpacity>
+                </DataTable.Cell>
+              </DataTable.Row>
+            ))}
+        </ScrollView>
       </DataTable>
+
       <DataTable.Pagination
         page={page}
         numberOfPages={Math.ceil(multas.length / itemsPerPage)}
@@ -100,14 +106,36 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  textContainer: {
+  container: {
     flex: 1,
+    backgroundColor: "#F5FCFF",
+  },
+  header: {
+    backgroundColor: "#146698",
+    marginHorizontal: 5,
+    paddingVertical: 10,
     flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  headerText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  detailsContainer: {
+    margin: 20,
+  },
+  detailsText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  detailsInfo: {
+    fontSize: 16,
   },
   imageContainer: {
-    marginTop: 20,
+    marginTop: 5,
     height: 130,
-    flex: 1,
+    margin: 10,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
@@ -115,8 +143,35 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
   },
   image: {
+    margin: 10,
     width: "80%",
     height: "80%",
     resizeMode: "contain",
+  },
+  tableContainer: {
+    flex: 1,
+  },
+  tableRow: {
+    flexDirection: "row",
+  },
+  tableCell: {
+    flex: 1,
+  },
+  actionsCell: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  actionsButton: {
+    backgroundColor: "#146698",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  actionsButtonText: {
+    color: "white",
+  },
+  paginationContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

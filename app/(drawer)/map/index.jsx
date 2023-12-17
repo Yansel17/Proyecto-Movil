@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Image,
+  Text,
+  ScrollView,
+} from "react-native";
 import multasAPI from "../../../api/multasAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -14,6 +21,7 @@ export default function App() {
   const LONGITUDE = -69.900491;
   const LATITUDE_DELTA = 0.09;
   const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
   const state = {
     region: {
       latitude: LATITUDE,
@@ -22,6 +30,7 @@ export default function App() {
       longitudeDelta: LONGITUDE_DELTA,
     },
   };
+
   useEffect(() => {
     async function fetchData() {
       const value = await AsyncStorage.getItem("userData");
@@ -33,28 +42,39 @@ export default function App() {
     }
     fetchData();
   }, []);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.date}>
         {detail.fecha}:{detail.hora}
       </Text>
-      <View style={styles.textContainer}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.titles}>Nombre</Text>
-          <Text style={styles.description}>{detail.nombreConductor}</Text>
-          <Text style={styles.titles}>Cedula:</Text>
-          <Text style={styles.description}>{detail.cedula}</Text>
-          <Text style={styles.titles}>Comentario:</Text>
-          <Text style={styles.description}>{detail.comentario}</Text>
-          <Text style={styles.titles}>Placa:</Text>
-          <Text style={styles.description}>{detail.placa}</Text>
-          <Text style={styles.titles}>Telefono:</Text>
-          <Text style={styles.description}>{detail.telefono}</Text>
+      <View style={styles.infoContainer}>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View>
+            <Text style={styles.titles}>Cédula:</Text>
+            <Text style={styles.description}>{detail.cedula}</Text>
+
+            <Text style={styles.titles}>Nombre</Text>
+            <Text style={styles.description}>{detail.nombreConductor}</Text>
+          </View>
+          <View>
+            <Text style={styles.titles}>Placa:</Text>
+            <Text style={styles.description}>{detail.placa}</Text>
+
+            <Text style={styles.titles}>Teléfono:</Text>
+            <Text style={styles.description}>{detail.telefono}</Text>
+          </View>
         </View>
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: detail.foto }} />
-        </View>
+        <Text style={styles.titles}>Comentario:</Text>
+        <Text style={styles.description}>{detail.comentario}</Text>
       </View>
+
+      <View style={styles.imageContainer}>
+        {detail.foto && (
+          <Image style={styles.image} source={{ uri: detail.foto }} />
+        )}
+      </View>
+
       <MapView
         initialRegion={state.region}
         scrollEnabled={true}
@@ -68,19 +88,17 @@ export default function App() {
         userInterfaceStyle="dark"
         style={styles.map}
       >
-        {multas.map((item, index) => {
-          return (
-            <Marker
-              onPress={() => setDetail(item)}
-              key={index}
-              coordinate={{ latitude: item.latitud, longitude: item.longitud }}
-              title={item.nombreConductor + " " + item.motivo}
-              description={item.direccion}
-            />
-          );
-        })}
+        {multas.map((item, index) => (
+          <Marker
+            onPress={() => setDetail(item)}
+            key={index}
+            coordinate={{ latitude: item.latitud, longitude: item.longitud }}
+            title={`${item.nombreConductor} ${item.motivo}`}
+            description={item.direccion}
+          />
+        ))}
       </MapView>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -88,40 +106,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor: "#fff",
   },
   map: {
-    textAlign: "center",
     width: "100%",
-    height: "60%",
-    borderWidth: 5,
-    borderColor: "red",
-    borderStyle: "solid",
+    height: 300,
+    borderWidth: 2,
+    borderColor: "black",
   },
   date: {
-    textAlign: "right",
+    textAlign: "center",
     fontWeight: "bold",
+    color: "green",
     fontSize: 18,
+    marginTop: 10,
   },
   titles: {
     fontWeight: "bold",
     fontSize: 18,
+    marginTop: 10,
   },
   description: {
+    fontSize: 16,
     paddingLeft: 10,
-    fontSize: 14,
-  },
-  textContainer: {
-    flex: 1,
-    flexDirection: "row",
   },
   infoContainer: {
-    flex: 1,
-    justifyContent: "center",
+    padding: 5,
   },
   imageContainer: {
     marginTop: 20,
-    height: 130,
-    flex: 1,
+    marginBottom: 10,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
@@ -130,7 +145,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "80%",
-    height: "80%",
     resizeMode: "contain",
   },
 });
