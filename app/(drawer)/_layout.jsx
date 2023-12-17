@@ -8,7 +8,18 @@ export default function Layout() {
         name="home"
         options={{
           drawerLabel: "Inicio",
-          title: "Inicio",
+          title: "DIGEAGENTE APP",
+          headerStyle: {
+            backgroundColor: "#176585",
+            borderBottomColor: "#f7bc05",
+            borderBottomWidth: 3,
+            borderBottomRightRadius: 60,
+          },
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "#f7bc05",
+            alignSelf: "center",
+          },
         }}
       />
       <Drawer.Screen
@@ -26,7 +37,7 @@ export default function Layout() {
             fontWeight: "bold",
             color: "#f7bc05",
             alignSelf: "center",
-            marginLeft: 50,
+            marginLeft: 30,
           },
         }}
       />
