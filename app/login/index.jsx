@@ -108,7 +108,7 @@ const LogInPage = () => {
           <View style={styles.container}>
             <Image
               style={styles.logo}
-              source={require("../../assets/logo.png")}
+              source={require("../../assets/logoTrans.png")}
             />
             <Text style={styles.title}>Iniciar de sesión</Text>
             <View style={styles.inputContainer}>

@@ -6,7 +6,7 @@ export default function HomePage() {
       <View style={styles.imgContainer}>
         <Image
           style={styles.image}
-          source={require("../../../assets/logo.png")}
+          source={require("../../../assets/logoTrans.png")}
         />
       </View>
       <Text style={styles.text}>Bienvenido a DigeAgentApp!</Text>
